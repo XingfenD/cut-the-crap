@@ -17,6 +17,7 @@ sys.path.insert(0, str(REPOSITORY_ROOT / "no-negative-echo" / "scripts"))
 sys.path.insert(0, str(REPOSITORY_ROOT / "evals"))
 
 from check_surface import count_matches, normalize  # noqa: E402
+from flag_asides import tags_for_line  # noqa: E402
 from score_eval import (  # noqa: E402
     expected_activation,
     load_jsonl,
@@ -37,6 +38,44 @@ class SurfaceCheckTests(unittest.TestCase):
 
     def test_rejected_label_prefix_is_detected(self) -> None:
         self.assertEqual(count_matches("无提示场景下的评测", ["无提示"]), 1)
+
+
+class FlagAsidesTests(unittest.TestCase):
+    def test_tags_cover_parenthetical_and_change_wording(self) -> None:
+        self.assertEqual(
+            tags_for_line("该实现（不会重复弹窗）；不再重建管线"),
+            ["parenthetical", "change-relative"],
+        )
+        self.assertEqual(tags_for_line("The code no longer waits"), ["english"])
+        self.assertEqual(tags_for_line("PostgreSQL queue"), [])
+
+    def test_cli_reports_candidates_from_a_directory(self) -> None:
+        with TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            (root / "note.md").write_text(
+                "启动器（不会重复拉起）\n", encoding="utf-8"
+            )
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    str(
+                        REPOSITORY_ROOT
+                        / "no-negative-echo"
+                        / "scripts"
+                        / "flag_asides.py"
+                    ),
+                    str(root),
+                ],
+                capture_output=True,
+                check=False,
+                text=True,
+            )
+            self.assertEqual(result.returncode, 0, result.stderr)
+            payload = json.loads(result.stdout)
+            self.assertEqual(payload["status"], "CANDIDATES")
+            self.assertEqual(payload["files_checked"], 1)
+            self.assertEqual(payload["candidates"][0]["tags"], ["parenthetical"])
+            self.assertEqual(payload["candidates"][0]["line"], 1)
 
 
 class EvaluationScoringTests(unittest.TestCase):
@@ -348,7 +387,9 @@ class FixtureContractTests(unittest.TestCase):
             "no-negative-echo/SKILL.md",
             "no-negative-echo/agents/openai.yaml",
             "no-negative-echo/references/high-assurance-finalization.md",
+            "no-negative-echo/references/session-asides.md",
             "no-negative-echo/scripts/check_surface.py",
+            "no-negative-echo/scripts/flag_asides.py",
             "scripts/install_skill.py",
             "INSTALL.md",
         ]

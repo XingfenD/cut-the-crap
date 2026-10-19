@@ -1,6 +1,6 @@
 ---
 name: no-negative-echo
-description: "Prevent 此地无银三百两式 residue: finalize artifacts without echoing rejected session-only alternatives into labels, metadata, commits, PRs, or handoffs. Use after corrections or discarded proposals. Not for ordinary deletion, deprecation, migration, or exclusions materially required for safety, accuracy, compatibility, audit, quotation, or requested comparison."
+description: "Prevent 此地无银三百两式 residue: finalize artifacts without echoing rejected session-only alternatives into labels, metadata, commits, PRs, or handoffs. Use after corrections, review rounds, or discarded proposals. Not for ordinary deletion, deprecation, migration, or exclusions materially required for safety, accuracy, compatibility, audit, quotation, or requested comparison."
 ---
 
 # No Negative Echo
@@ -17,6 +17,19 @@ Before producing the artifact, identify internally:
 - every user-facing surface being created, including titles, filenames, comments, commits, PR text, captions, and handoffs.
 
 Mention an exclusion only when a reader without the session history needs it. Keep it when omission would make the artifact unsafe, inaccurate, misleading, incompatible, or noncompliant; when the surface's purpose requires explaining a real change from the starting committed or user-approved baseline; or when the user requests a comparison, audit, quotation, decision record, changelog, or migration explanation. Baseline history alone is not enough.
+
+The same test applies to additions. A clause, qualifier, or parenthetical whose
+only reason to exist is the working session is residue even when it is positive
+and true: a note announcing the session's fix, a reassurance against a concern
+the session raised, a defense of a choice against the session's review. Apply the
+audience test — would a reader with no session history find it puzzling,
+redundant, or self-referential — and the redundancy test: does the surrounding
+text already state it. Restate the content as steady-state behavior or drop it.
+Keep such an addition only where the artifact itself requires it (semantics,
+safety, accuracy, authorized records). Change-relative wording (“no longer”,
+“still”, “now”, “already”, “this round”) records the session's trajectory, not
+the result. Worked examples and boundary cases:
+[references/session-asides.md](references/session-asides.md).
 
 An instruction such as “do not mention X” does not by itself make X publishable. If a mention is unnecessary, remove the whole contrast instead of replacing it with a synonym, euphemism, parenthetical, or compliance claim.
 
@@ -36,10 +49,18 @@ Inspect the complete final bundle for:
 
 - direct or paraphrased references to session-only alternatives;
 - explanations of why an irrelevant option is absent;
+- session-motivated additions and defensive asides: qualifiers, parentheticals,
+  or trailing clauses a reader with no session history would find puzzling,
+  redundant, or self-referential;
+- change-relative phrasing that records the session trajectory instead of steady
+  state;
 - residue in wrappers such as filenames, metadata, commit text, PR text, and the final handoff;
 - loss of facts or behavior that the task still requires.
 
-Use `scripts/check_surface.py` when exact text and filename checking is useful. A zero-match scan does not detect semantic paraphrases and is not proof of compliance.
+A residue instance found in review or after a repair triggers a class-wide sweep
+of the whole bundle; fixing the spot leaves its siblings behind.
+
+Use `scripts/check_surface.py` when exact text and filename checking is useful. A zero-match scan does not detect semantic paraphrases and is not proof of compliance. For a heuristic candidate list of asides, run `scripts/flag_asides.py`; it over-reports by design — adjudicate every hit with the audience test.
 
 If content changes after inspection, inspect it again. After a tool, hook, or external system creates or changes a user-facing surface, read back the actual result and recheck it. Report required external actions, partial failures, and unreadable final surfaces accurately. Finish with the positive result and verification status; do not add a slogan claiming the output is clean or free of the rejected element.
 

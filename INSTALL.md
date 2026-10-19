@@ -29,7 +29,7 @@ Otherwise, use the bundled installer:
 
    ```bash
    python3 -I -B scripts/install_skill.py \
-     --expected-provenance-sha256 d42280b21f519ea00e417c68f31c68ca3d7faae607faf6dcb6e04beeff9c5ed6 \
+     --expected-provenance-sha256 049c18440fb19d9c2d5a31cf60c58ba374975b6797272d396e828159d75f3b43 \
      --agent HOST_PRESET
    ```
 
@@ -57,7 +57,7 @@ For a custom destination, use only a documented Skill root for that host:
 
 ```bash
 python3 -I -B scripts/install_skill.py \
-  --expected-provenance-sha256 d42280b21f519ea00e417c68f31c68ca3d7faae607faf6dcb6e04beeff9c5ed6 \
+  --expected-provenance-sha256 049c18440fb19d9c2d5a31cf60c58ba374975b6797272d396e828159d75f3b43 \
   --skills-dir /absolute/path/to/skills \
   --discovery-root /absolute/path/to/skills
 ```

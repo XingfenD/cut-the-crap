@@ -57,7 +57,7 @@ Local Codex example:
 git clone https://github.com/LB623/no-negative-echo.git
 cd no-negative-echo
 python3 -I -B scripts/install_skill.py \
-  --expected-provenance-sha256 d42280b21f519ea00e417c68f31c68ca3d7faae607faf6dcb6e04beeff9c5ed6 \
+  --expected-provenance-sha256 049c18440fb19d9c2d5a31cf60c58ba374975b6797272d396e828159d75f3b43 \
   --agent codex
 ```
 
@@ -91,6 +91,7 @@ accepted final state. Assume the reader did not see this session.
 - Treat session-only rejections, intermediate attempts, and wording corrections as control information. Do not make them the name or narrative center of the final artifact.
 - Judge each delivery surface separately: Would a reader who did not see this session need the information? Would omission make the result inaccurate, unsafe, misleading, or incomplete for compatibility? Is it a real change from the state committed or approved when the task began, and does this surface need to explain it?
 - “Do not mention X” does not mean “write X-free.” Regenerate titles, filenames, openings, and labels from the positive target instead of editing rejected wording token by token.
+- The same applies to additions: an aside, qualifier, or parenthetical whose only reason to exist is the working session (announcing the fix, reassuring against a concern nobody raised) is residue even when true. Restate it as steady state or drop it; keep it only for semantics, safety, diagnostics, or decision records.
 - Preserve real baseline changes, executed external actions, and necessary technical names, diagnostics, tests, and snapshots. User changes that existed before the task are not rejected content.
 - Do not include unrelated changes in this task's commit, PR, or handoff. Keep comparisons, quotations, audits, and migration explanations only when the user requests them or the current surface requires them.
 - After writing, reread all user-visible content and wrappers, including filenames, metadata, and hook rewrites. Recheck after any change. Do not add “cleaned” or “no residue” claims.
@@ -106,6 +107,7 @@ The `AGENTS.md` option does not install the Skill and cannot use `scripts/check_
 |---|---|
 | A proposal discussed only in the session and absent from the final baseline | Omit |
 | Assistant drafts, intermediate attempts, and wording corrections | Omit |
+| Asides, defenses, or change-relative wording that exist only for the session history | Omit, or restate as steady state |
 | Released API removals, migrations, and external operations | State accurately |
 | Facts required for safety, law, compatibility, or audit | Keep |
 | Comparisons, quotations, or decision records explicitly requested by the user | Keep |

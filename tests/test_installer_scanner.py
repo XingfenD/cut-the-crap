@@ -84,7 +84,13 @@ def make_source(root: Path) -> Path:
     (source / "references" / "high-assurance-finalization.md").write_text(
         "# High assurance\n", encoding="utf-8"
     )
+    (source / "references" / "session-asides.md").write_text(
+        "# Session asides\n", encoding="utf-8"
+    )
     (source / "scripts" / "check_surface.py").write_text(
+        "#!/usr/bin/env python3\n", encoding="utf-8"
+    )
+    (source / "scripts" / "flag_asides.py").write_text(
         "#!/usr/bin/env python3\n", encoding="utf-8"
     )
     refresh_provenance(source)
@@ -1015,6 +1021,7 @@ class HardenedInstallerTests(unittest.TestCase):
             entrypoints = [
                 REPOSITORY_ROOT / "evals" / "score_eval.py",
                 target / "scripts" / "check_surface.py",
+                target / "scripts" / "flag_asides.py",
             ]
             for entrypoint in entrypoints:
                 with self.subTest(entrypoint=entrypoint.name):
