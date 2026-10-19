@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "package_id": "io.github.lb623.no-negative-echo",
-  "source_repository": "https://github.com/LB623/no-negative-echo",
+  "package_id": "io.github.xingfend.cut-the-crap",
+  "source_repository": "https://github.com/XingfenD/cut-the-crap",
   "files": {
     "SKILL.md": "b858e8b5872514573151837bc4c0633dbf43e72f15ce20433aff9154e1266bc2",
     "agents/openai.yaml": "52252e049b122733259dc17f17d54359b4e6445eed1482c393e7744a6f8e9a4c",

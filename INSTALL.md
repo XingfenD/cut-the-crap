@@ -1,7 +1,7 @@
 # Install no-negative-echo
 
 Install only the runtime Skill from
-<https://github.com/LB623/no-negative-echo>. Do not inspect, modify, or install
+<https://github.com/XingfenD/cut-the-crap>. Do not inspect, modify, or install
 unrelated skills, packages, repositories, or host configuration.
 
 ## Default installation
@@ -29,7 +29,7 @@ Otherwise, use the bundled installer:
 
    ```bash
    python3 -I -B scripts/install_skill.py \
-     --expected-provenance-sha256 049c18440fb19d9c2d5a31cf60c58ba374975b6797272d396e828159d75f3b43 \
+     --expected-provenance-sha256 2a56d86507d0e0f930a52bb2b2b2bab3cedb5ff809420b2609fdaebc86ea0cba \
      --agent HOST_PRESET
    ```
 
@@ -57,7 +57,7 @@ For a custom destination, use only a documented Skill root for that host:
 
 ```bash
 python3 -I -B scripts/install_skill.py \
-  --expected-provenance-sha256 049c18440fb19d9c2d5a31cf60c58ba374975b6797272d396e828159d75f3b43 \
+  --expected-provenance-sha256 2a56d86507d0e0f930a52bb2b2b2bab3cedb5ff809420b2609fdaebc86ea0cba \
   --skills-dir /absolute/path/to/skills \
   --discovery-root /absolute/path/to/skills
 ```

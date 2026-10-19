@@ -13,9 +13,9 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/LB623/no-negative-echo/actions/workflows/test.yml"><img src="https://github.com/LB623/no-negative-echo/actions/workflows/test.yml/badge.svg" alt="Tests"></a>
-  <a href="https://github.com/LB623/no-negative-echo/stargazers"><img src="https://img.shields.io/github/stars/LB623/no-negative-echo?style=flat&amp;logo=github" alt="GitHub stars"></a>
-  <a href="./LICENSE"><img src="https://img.shields.io/github/license/LB623/no-negative-echo" alt="MIT License"></a>
+  <a href="https://github.com/XingfenD/cut-the-crap/actions/workflows/test.yml"><img src="https://github.com/XingfenD/cut-the-crap/actions/workflows/test.yml/badge.svg" alt="Tests"></a>
+  <a href="https://github.com/XingfenD/cut-the-crap/stargazers"><img src="https://img.shields.io/github/stars/XingfenD/cut-the-crap?style=flat&amp;logo=github" alt="GitHub stars"></a>
+  <a href="./LICENSE"><img src="https://img.shields.io/github/license/XingfenD/cut-the-crap" alt="MIT License"></a>
   <img src="https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&amp;logoColor=white" alt="Python 3.10+">
 </p>
 
@@ -46,17 +46,17 @@ Agent 在迭代中修正了方案，却把被否内容带进最终标题、注�
 
 ```text
 请安装 no-negative-echo Skill：
-https://raw.githubusercontent.com/LB623/no-negative-echo/main/INSTALL.md
+https://raw.githubusercontent.com/XingfenD/cut-the-crap/main/INSTALL.md
 装完告诉我安装结果，以及是否需要开启新会话或重启。无法验证时，不要宣称安装成功。
 ```
 
 本地安装示例（Codex）：
 
 ```bash
-git clone https://github.com/LB623/no-negative-echo.git
-cd no-negative-echo
+git clone https://github.com/XingfenD/cut-the-crap.git
+cd cut-the-crap
 python3 -I -B scripts/install_skill.py \
-  --expected-provenance-sha256 049c18440fb19d9c2d5a31cf60c58ba374975b6797272d396e828159d75f3b43 \
+  --expected-provenance-sha256 2a56d86507d0e0f930a52bb2b2b2bab3cedb5ff809420b2609fdaebc86ea0cba \
   --agent codex
 ```
 
