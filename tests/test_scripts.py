@@ -13,7 +13,7 @@ import unittest
 
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(REPOSITORY_ROOT / "no-negative-echo" / "scripts"))
+sys.path.insert(0, str(REPOSITORY_ROOT / "cut-the-crap" / "scripts"))
 sys.path.insert(0, str(REPOSITORY_ROOT / "evals"))
 
 from check_surface import count_matches, normalize  # noqa: E402
@@ -60,7 +60,7 @@ class FlagAsidesTests(unittest.TestCase):
                     sys.executable,
                     str(
                         REPOSITORY_ROOT
-                        / "no-negative-echo"
+                        / "cut-the-crap"
                         / "scripts"
                         / "flag_asides.py"
                     ),
@@ -309,8 +309,8 @@ class InstallerTests(unittest.TestCase):
     def test_installer_replaces_a_valid_existing_runtime(self) -> None:
         with TemporaryDirectory() as temp_dir:
             skills_dir = Path(temp_dir) / "skills"
-            old_target = skills_dir / "no-negative-echo"
-            shutil.copytree(REPOSITORY_ROOT / "no-negative-echo", old_target)
+            old_target = skills_dir / "cut-the-crap"
+            shutil.copytree(REPOSITORY_ROOT / "cut-the-crap", old_target)
             ignored_cache = old_target / "scripts" / "__pycache__" / "stale.pyc"
             ignored_cache.parent.mkdir(exist_ok=True)
             ignored_cache.write_bytes(b"stale")
@@ -345,7 +345,7 @@ class InstallerTests(unittest.TestCase):
             self.assertTrue(coordination_lock.is_file())
             self.assertFalse(ignored_cache.exists())
             self.assertTrue(
-                (old_target / ".no-negative-echo-provenance.json").is_file()
+                (old_target / ".cut-the-crap-provenance.json").is_file()
             )
             self.assertTrue((old_target / "SKILL.md").is_file())
             self.assertTrue((old_target / "agents" / "openai.yaml").is_file())
@@ -383,13 +383,13 @@ class FixtureContractTests(unittest.TestCase):
 
     def test_runtime_hash_inputs_are_forced_to_lf_by_git(self) -> None:
         paths = [
-            "no-negative-echo/.no-negative-echo-provenance.json",
-            "no-negative-echo/SKILL.md",
-            "no-negative-echo/agents/openai.yaml",
-            "no-negative-echo/references/high-assurance-finalization.md",
-            "no-negative-echo/references/session-asides.md",
-            "no-negative-echo/scripts/check_surface.py",
-            "no-negative-echo/scripts/flag_asides.py",
+            "cut-the-crap/.cut-the-crap-provenance.json",
+            "cut-the-crap/SKILL.md",
+            "cut-the-crap/agents/openai.yaml",
+            "cut-the-crap/references/high-assurance-finalization.md",
+            "cut-the-crap/references/session-asides.md",
+            "cut-the-crap/scripts/check_surface.py",
+            "cut-the-crap/scripts/flag_asides.py",
             "scripts/install_skill.py",
             "INSTALL.md",
         ]
@@ -427,7 +427,7 @@ class FixtureContractTests(unittest.TestCase):
 
     def test_published_provenance_digest_matches_install_docs(self) -> None:
         marker = (
-            REPOSITORY_ROOT / "no-negative-echo" / ".no-negative-echo-provenance.json"
+            REPOSITORY_ROOT / "cut-the-crap" / ".cut-the-crap-provenance.json"
         )
         digest = hashlib.sha256(marker.read_bytes()).hexdigest()
         for relative in ("INSTALL.md", "README.md", "README_EN.md"):
@@ -436,7 +436,7 @@ class FixtureContractTests(unittest.TestCase):
                 self.assertIn(digest, contents)
 
     def test_interface_icon_assets_are_valid(self) -> None:
-        skill_root = REPOSITORY_ROOT / "no-negative-echo"
+        skill_root = REPOSITORY_ROOT / "cut-the-crap"
         metadata = (skill_root / "agents" / "openai.yaml").read_text(encoding="utf-8")
 
         for filename, expected_dimensions in {
@@ -456,7 +456,7 @@ class FixtureContractTests(unittest.TestCase):
         self.assertIn('icon_large: "./assets/icon.png"', metadata)
 
     def test_installable_skill_excludes_evaluation_harness(self) -> None:
-        skill_root = REPOSITORY_ROOT / "no-negative-echo"
+        skill_root = REPOSITORY_ROOT / "cut-the-crap"
         forbidden_names = {
             "evaluation-oracle.jsonl",
             "evaluation-prompts.jsonl",

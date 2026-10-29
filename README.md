@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="./no-negative-echo/assets/icon.png" width="168" alt="No Negative Echo icon">
+  <img src="./cut-the-crap/assets/icon.png" width="168" alt="Cut the Crap icon">
 </p>
 
-<h1 align="center">No Negative Echo</h1>
+<h1 align="center">Cut the Crap</h1>
 
 <p align="center"><strong>让 Agent 交付最终结果，而非复述被否方案。</strong></p>
 
@@ -28,7 +28,7 @@ Agent 在迭代中修正了方案，却把被否内容带进最终标题、注�
 + 标题：番茄炒蛋
 ```
 
-`no-negative-echo` 是一个 [Agent Skills](https://agentskills.io/specification) 格式的 Skill。它要求 Agent 从已采用、已验证的最终状态重新生成交付文案，并在多个交付面检查会话残留。
+`cut-the-crap` 是一个 [Agent Skills](https://agentskills.io/specification) 格式的 Skill。它要求 Agent 从已采用、已验证的最终状态重新生成交付文案，并在多个交付面检查会话残留。
 
 适用场景：
 
@@ -45,7 +45,7 @@ Agent 在迭代中修正了方案，却把被否内容带进最终标题、注�
 让具备网络、终端和文件权限的 Agent 按安装合约执行：
 
 ```text
-请安装 no-negative-echo Skill：
+请安装 cut-the-crap Skill：
 https://raw.githubusercontent.com/XingfenD/cut-the-crap/main/INSTALL.md
 装完告诉我安装结果，以及是否需要开启新会话或重启。无法验证时，不要宣称安装成功。
 ```
@@ -56,7 +56,7 @@ https://raw.githubusercontent.com/XingfenD/cut-the-crap/main/INSTALL.md
 git clone https://github.com/XingfenD/cut-the-crap.git
 cd cut-the-crap
 python3 -I -B scripts/install_skill.py \
-  --expected-provenance-sha256 2a56d86507d0e0f930a52bb2b2b2bab3cedb5ff809420b2609fdaebc86ea0cba \
+  --expected-provenance-sha256 29ef3fe54631077b038bcd6bae81e2ef0280c247de861f9d3528b6ba5d4f780b \
   --agent codex
 ```
 
@@ -65,14 +65,14 @@ python3 -I -B scripts/install_skill.py \
 重要交付前建议显式调用：
 
 ```text
-使用 no-negative-echo Skill。
+使用 cut-the-crap Skill。
 根据最终 diff 写 commit subject、PR 标题、PR 正文和交付说明。
 ```
 
 文章场景：
 
 ```text
-使用 no-negative-echo Skill。
+使用 cut-the-crap Skill。
 根据最终保留的正文重写标题和开篇。
 ```
 
@@ -81,7 +81,7 @@ python3 -I -B scripts/install_skill.py \
 如果只需要核心行为约束，可以把下面内容追加到项目根目录的 `AGENTS.md`。文件不存在时，新建即可。不要覆盖项目中已有的指令。
 
 ```markdown
-## No Negative Echo
+## Cut the Crap
 
 生成最终产物及其包装时，包括标题、文件名、正文、注释、标签、commit、
 PR 和交付说明，只描述最终采用的状态，假设读者没看过本次会话。
@@ -129,7 +129,7 @@ PR 和交付说明，只描述最终采用的状态，假设读者没看过本�
 - 不要为通过检查而修改 API、迁移、测试、快照或现有用户改动。
 - 凭据、隐私与合规问题仍应交给专门工具处理。
 
-默认流程见 [SKILL.md](no-negative-echo/SKILL.md)；敏感信息、公开发布与严格验收才会按需读取 [high-assurance-finalization.md](no-negative-echo/references/high-assurance-finalization.md)。
+默认流程见 [SKILL.md](cut-the-crap/SKILL.md)；敏感信息、公开发布与严格验收才会按需读取 [high-assurance-finalization.md](cut-the-crap/references/high-assurance-finalization.md)。
 
 ## 开发与评测
 

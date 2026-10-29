@@ -1,9 +1,9 @@
 ---
-name: no-negative-echo
+name: cut-the-crap
 description: "Prevent 此地无银三百两式 residue: finalize artifacts without echoing rejected session-only alternatives into labels, metadata, commits, PRs, or handoffs. Use after corrections, review rounds, or discarded proposals. Not for ordinary deletion, deprecation, migration, or exclusions materially required for safety, accuracy, compatibility, audit, quotation, or requested comparison."
 ---
 
-# No Negative Echo
+# Cut the Crap
 
 Describe the accepted result as if the audience never saw the working session. Treat rejected proposals and user corrections as control data, not as the result's identity.
 

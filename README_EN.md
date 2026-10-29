@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="./no-negative-echo/assets/icon.png" width="168" alt="No Negative Echo icon">
+  <img src="./cut-the-crap/assets/icon.png" width="168" alt="Cut the Crap icon">
 </p>
 
-<h1 align="center">No Negative Echo</h1>
+<h1 align="center">Cut the Crap</h1>
 
 <p align="center"><strong>Ship the accepted result, not the rejected proposal.</strong></p>
 
@@ -28,7 +28,7 @@ An agent corrects its implementation, then lets the rejected proposal leak into 
 + Title: Tomato and Egg Stir-fry
 ```
 
-`no-negative-echo` is an [Agent Skills](https://agentskills.io/specification)-format skill. It has agents regenerate delivery text from the accepted, verified state and check delivery surfaces for session residue.
+`cut-the-crap` is an [Agent Skills](https://agentskills.io/specification)-format skill. It has agents regenerate delivery text from the accepted, verified state and check delivery surfaces for session residue.
 
 Use it to:
 
@@ -45,7 +45,7 @@ Install the Skill when you need its decision workflow, scanner, and high-assuran
 Ask an agent with network, terminal, and file permissions to follow the installation contract:
 
 ```text
-Install the no-negative-echo Skill:
+Install the cut-the-crap Skill:
 https://raw.githubusercontent.com/XingfenD/cut-the-crap/main/INSTALL.md
 Report the installation result and whether a new session or restart is needed.
 If verification is unavailable, do not claim that installation succeeded.
@@ -57,7 +57,7 @@ Local Codex example:
 git clone https://github.com/XingfenD/cut-the-crap.git
 cd cut-the-crap
 python3 -I -B scripts/install_skill.py \
-  --expected-provenance-sha256 2a56d86507d0e0f930a52bb2b2b2bab3cedb5ff809420b2609fdaebc86ea0cba \
+  --expected-provenance-sha256 29ef3fe54631077b038bcd6bae81e2ef0280c247de861f9d3528b6ba5d4f780b \
   --agent codex
 ```
 
@@ -66,14 +66,14 @@ The installer validates provenance, the runtime manifest, destination conflicts,
 Explicitly invoke the Skill before an important delivery:
 
 ```text
-Use the no-negative-echo Skill.
+Use the cut-the-crap Skill.
 Based on the final diff, write the commit subject, PR title, PR body, and handoff.
 ```
 
 For editorial work:
 
 ```text
-Use the no-negative-echo Skill.
+Use the cut-the-crap Skill.
 Rewrite the title and opening from the final retained body.
 ```
 
@@ -82,7 +82,7 @@ Rewrite the title and opening from the final retained body.
 If you only need the core behavior, append the following instructions to `AGENTS.md` at the project root. Create the file if it does not exist, and do not overwrite existing project instructions.
 
 ```markdown
-## No Negative Echo
+## Cut the Crap
 
 When producing final artifacts and their wrappers, including titles, filenames,
 body text, comments, labels, commits, PRs, and handoffs, describe only the
@@ -131,7 +131,7 @@ This is a prompt-level mitigation, not a deterministic filter:
 - Do not change APIs, migrations, tests, snapshots, or pre-existing user work merely to satisfy this skill.
 - Use dedicated tools for credentials, privacy, and compliance checks.
 
-See [SKILL.md](no-negative-echo/SKILL.md) for the default workflow. Sensitive data, public release, and strict validation load [high-assurance-finalization.md](no-negative-echo/references/high-assurance-finalization.md) only when needed.
+See [SKILL.md](cut-the-crap/SKILL.md) for the default workflow. Sensitive data, public release, and strict validation load [high-assurance-finalization.md](cut-the-crap/references/high-assurance-finalization.md) only when needed.
 
 ## Development and evaluation
 

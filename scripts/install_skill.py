@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Install the local no-negative-echo runtime package for a supported agent."""
+"""Install the local cut-the-crap runtime package for a supported agent."""
 
 from __future__ import annotations
 
@@ -18,25 +18,14 @@ from uuid import uuid4
 
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_SOURCE = REPOSITORY_ROOT / "no-negative-echo"
-SKILL_NAME = "no-negative-echo"
-PROVENANCE_FILE = Path(".no-negative-echo-provenance.json")
+DEFAULT_SOURCE = REPOSITORY_ROOT / "cut-the-crap"
+SKILL_NAME = "cut-the-crap"
+PROVENANCE_FILE = Path(".cut-the-crap-provenance.json")
 PACKAGE_ID = "io.github.xingfend.cut-the-crap"
 SOURCE_REPOSITORY = "https://github.com/XingfenD/cut-the-crap"
 PROVENANCE_IDENTITY = (PACKAGE_ID, SOURCE_REPOSITORY)
-# Identities carried by markers published before the repository rename. They
-# are accepted only while validating an existing install whose marker digest
-# is already in KNOWN_OFFICIAL_PROVENANCE_SHA256.
-HISTORICAL_PROVENANCE_IDENTITIES = frozenset(
-    {
-        (
-            "io.github.lb623.no-negative-echo",
-            "https://github.com/LB623/no-negative-echo",
-        ),
-    }
-)
 CURRENT_PROVENANCE_SHA256 = (
-    "2a56d86507d0e0f930a52bb2b2b2bab3cedb5ff809420b2609fdaebc86ea0cba"
+    "29ef3fe54631077b038bcd6bae81e2ef0280c247de861f9d3528b6ba5d4f780b"
 )
 RUNTIME_FILES = frozenset(
     {
@@ -52,52 +41,7 @@ RUNTIME_FILES = frozenset(
         Path("scripts/flag_asides.py"),
     }
 )
-PREVIOUS_PROVENANCE_RUNTIME_FILES: dict[str, frozenset[Path]] = {
-    "049c18440fb19d9c2d5a31cf60c58ba374975b6797272d396e828159d75f3b43": frozenset(
-        {
-            PROVENANCE_FILE,
-            Path("SKILL.md"),
-            Path("agents/openai.yaml"),
-            Path("assets/decision-boundary.png"),
-            Path("assets/icon-400.png"),
-            Path("assets/icon.png"),
-            Path("references/high-assurance-finalization.md"),
-            Path("references/session-asides.md"),
-            Path("scripts/check_surface.py"),
-            Path("scripts/flag_asides.py"),
-        }
-    ),
-    "d42280b21f519ea00e417c68f31c68ca3d7faae607faf6dcb6e04beeff9c5ed6": frozenset(
-        {
-            PROVENANCE_FILE,
-            Path("SKILL.md"),
-            Path("agents/openai.yaml"),
-            Path("assets/decision-boundary.png"),
-            Path("assets/icon-400.png"),
-            Path("assets/icon.png"),
-            Path("references/high-assurance-finalization.md"),
-            Path("scripts/check_surface.py"),
-        }
-    ),
-    "9cc10a0f1d2d87f0de8517bf40c59e364783e2410308a0c8f815288f53a7cc47": frozenset(
-        {
-            PROVENANCE_FILE,
-            Path("SKILL.md"),
-            Path("agents/openai.yaml"),
-            Path("assets/decision-boundary.png"),
-            Path("assets/icon-400.png"),
-            Path("assets/icon.png"),
-            Path("scripts/check_surface.py"),
-        }
-    ),
-}
-# Preserve each prior published marker digest with its exact runtime shape.
-KNOWN_OFFICIAL_PROVENANCE_SHA256 = frozenset(
-    {CURRENT_PROVENANCE_SHA256, *PREVIOUS_PROVENANCE_RUNTIME_FILES}
-)
-KNOWN_PROVENANCE_IDENTITIES = (
-    frozenset({PROVENANCE_IDENTITY}) | HISTORICAL_PROVENANCE_IDENTITIES
-)
+KNOWN_OFFICIAL_PROVENANCE_SHA256 = frozenset({CURRENT_PROVENANCE_SHA256})
 AGENT_SKILLS_DIRS = {
     "codex": Path(".agents/skills"),
     "claude": Path(".claude/skills"),
@@ -108,120 +52,7 @@ AGENT_SKILLS_DIRS = {
 }
 AGENT_PRESETS = (*AGENT_SKILLS_DIRS, "codex-legacy")
 NATIVE_SHARED_AGENTS = ("cursor", "gemini", "copilot")
-LOCK_MAGIC = b"no-negative-echo-install-lock-v1\n"
-LEGACY_TEXT_SUFFIXES = frozenset({".md", ".py", ".svg", ".yaml"})
-LEGACY_OFFICIAL_MANIFESTS: dict[str, dict[Path, str]] = {
-    "5ba55a4217568e94f22414cb5bbcde4b51c37995": {
-        Path(
-            "SKILL.md"
-        ): "287c76a9cd417b89e871e8f7de1e76e526eb6f8fa18386aae0c134c9601059a5",
-        Path(
-            "agents/openai.yaml"
-        ): "52252e049b122733259dc17f17d54359b4e6445eed1482c393e7744a6f8e9a4c",
-        Path(
-            "assets/decision-boundary.png"
-        ): "3c80021dc245b4a3fe02a18434fc200fae0db3810c8fd451acc25bfb2e831d7a",
-        Path(
-            "assets/icon-400.png"
-        ): "9ba3b39b106a1f6b6a376a4ccf91373e8f80923d87ca244892c35c7f95a1a121",
-        Path(
-            "assets/icon.png"
-        ): "052b7bf0101ab53cbfe2a909155d36df7554acbfbefeefbe94f00e5cf2e74b74",
-        Path(
-            "scripts/check_surface.py"
-        ): "d63a03fb1052706e1e5d1b23d413251dff5690e0c3e837c069826de6fe06661b",
-    },
-    "bc20e6b0eb7d224f32600ce972bb333a2f1ca3f0": {
-        Path(
-            "SKILL.md"
-        ): "4447f3ba40746ef566785662963f5eb0260149845c53f58bd67009680b0b4603",
-        Path(
-            "agents/openai.yaml"
-        ): "52252e049b122733259dc17f17d54359b4e6445eed1482c393e7744a6f8e9a4c",
-        Path(
-            "assets/decision-boundary.png"
-        ): "3c80021dc245b4a3fe02a18434fc200fae0db3810c8fd451acc25bfb2e831d7a",
-        Path(
-            "assets/icon-400.png"
-        ): "9ba3b39b106a1f6b6a376a4ccf91373e8f80923d87ca244892c35c7f95a1a121",
-        Path(
-            "assets/icon.png"
-        ): "052b7bf0101ab53cbfe2a909155d36df7554acbfbefeefbe94f00e5cf2e74b74",
-        Path(
-            "scripts/check_surface.py"
-        ): "275d3172c118bf5578e7b71a074a9407b135f20bb8f7e7790dc5c15332c4979e",
-    },
-    "df9b15cda4288e4e804a0650ca5b05a81ff222ae": {
-        Path(
-            "SKILL.md"
-        ): "4447f3ba40746ef566785662963f5eb0260149845c53f58bd67009680b0b4603",
-        Path(
-            "agents/openai.yaml"
-        ): "52252e049b122733259dc17f17d54359b4e6445eed1482c393e7744a6f8e9a4c",
-        Path(
-            "assets/decision-boundary-en.svg"
-        ): "8ad70ca4b20271fb41ea8042930ff13a4416106a51924d47566b1a05ca96395f",
-        Path(
-            "assets/decision-boundary-zh.svg"
-        ): "463565dbdd39cd009915074cd2d78ec67c18385fea79ba2f0f58cf68f5747ff1",
-        Path(
-            "assets/icon-400.png"
-        ): "9ba3b39b106a1f6b6a376a4ccf91373e8f80923d87ca244892c35c7f95a1a121",
-        Path(
-            "assets/icon.png"
-        ): "052b7bf0101ab53cbfe2a909155d36df7554acbfbefeefbe94f00e5cf2e74b74",
-        Path(
-            "scripts/check_surface.py"
-        ): "275d3172c118bf5578e7b71a074a9407b135f20bb8f7e7790dc5c15332c4979e",
-    },
-    "367e09d5c95df6d7fa5864cad1b3b7ee5c2678ae": {
-        Path(
-            "SKILL.md"
-        ): "4447f3ba40746ef566785662963f5eb0260149845c53f58bd67009680b0b4603",
-        Path(
-            "agents/openai.yaml"
-        ): "52252e049b122733259dc17f17d54359b4e6445eed1482c393e7744a6f8e9a4c",
-        Path(
-            "assets/icon-400.png"
-        ): "9ba3b39b106a1f6b6a376a4ccf91373e8f80923d87ca244892c35c7f95a1a121",
-        Path(
-            "assets/icon.png"
-        ): "052b7bf0101ab53cbfe2a909155d36df7554acbfbefeefbe94f00e5cf2e74b74",
-        Path(
-            "scripts/check_surface.py"
-        ): "275d3172c118bf5578e7b71a074a9407b135f20bb8f7e7790dc5c15332c4979e",
-    },
-    "56f5ff22c7c2af894065f991c057f1526ffae6aa": {
-        Path(
-            "SKILL.md"
-        ): "4447f3ba40746ef566785662963f5eb0260149845c53f58bd67009680b0b4603",
-        Path(
-            "agents/openai.yaml"
-        ): "bec5b6b8b177371ee450d3f3a992bc06954b0942f5839490e2312dc895229158",
-        Path(
-            "assets/icon-400.png"
-        ): "4e3c6290779d886bc00df239f36bf8f50bf36daa64acdbb21b69d51c7abae946",
-        Path(
-            "assets/icon.svg"
-        ): "e960d3c2276ec328f8562628869c6c16deb5853b0bdf452d5352dfee2e3715d3",
-        Path(
-            "scripts/check_surface.py"
-        ): "275d3172c118bf5578e7b71a074a9407b135f20bb8f7e7790dc5c15332c4979e",
-    },
-    "9bb1d2cceac31c5129bc7f541c3fc4631cf52b25": {
-        Path(
-            "SKILL.md"
-        ): "4447f3ba40746ef566785662963f5eb0260149845c53f58bd67009680b0b4603",
-        Path(
-            "agents/openai.yaml"
-        ): "3a1245ee261d5507530959131077bd9597c98538a78c6799fd517ecfa892ad6c",
-        Path(
-            "scripts/check_surface.py"
-        ): "275d3172c118bf5578e7b71a074a9407b135f20bb8f7e7790dc5c15332c4979e",
-    },
-}
-
-
+LOCK_MAGIC = b"cut-the-crap-install-lock-v1\n"
 class InstallError(RuntimeError):
     """Base class for installation failures with a safe user-facing message."""
 
@@ -357,7 +188,7 @@ def _resolve_cli_skills_dir(
         if conflict is not None:
             raise InstallValidationError(
                 "refusing to create multiple discoverable installs for the "
-                "selected agent: another no-negative-echo target already exists "
+                "selected agent: another cut-the-crap target already exists "
                 f"at {conflict}; resolve it manually before installing"
             )
 
@@ -398,7 +229,7 @@ def _resolve_cli_skills_dir(
     legacy_exists = _exists_without_following(legacy_target)
     duplicate_error = (
         "refusing to create a second Codex install across the current and legacy "
-        "locations: another no-negative-echo target already exists; resolve it "
+        "locations: another cut-the-crap target already exists; resolve it "
         "manually before installing"
     )
 
@@ -485,7 +316,7 @@ def _check_additional_discovery_roots(
         if conflict is not None:
             raise InstallValidationError(
                 "refusing to create multiple discoverable installs: another "
-                f"no-negative-echo target exists at {conflict}; resolve it "
+                f"cut-the-crap target exists at {conflict}; resolve it "
                 "manually before installing"
             )
 
@@ -593,34 +424,6 @@ def _sha256_regular_file(path: Path) -> str:
     return digest.hexdigest()
 
 
-def _sha256_legacy_file(path: Path, relative: Path) -> str:
-    """Hash a legacy file, canonicalizing checkout-only CRLF text changes."""
-
-    if relative.suffix not in LEGACY_TEXT_SUFFIXES:
-        return _sha256_regular_file(path)
-    before = _lstat(path)
-    if before is None or not stat.S_ISREG(before.st_mode):
-        raise InstallValidationError(f"runtime file must be regular: {path.name}")
-    try:
-        with path.open("rb") as handle:
-            opened = os.fstat(handle.fileno())
-            if _identity(opened) != _identity(before):
-                raise InstallValidationError(
-                    f"runtime file changed while it was inspected: {path.name}"
-                )
-            contents = handle.read()
-    except OSError as exc:
-        raise InstallValidationError(
-            f"runtime file could not be read: {path.name}"
-        ) from exc
-    after = _lstat(path)
-    if after is None or _identity(after) != _identity(before):
-        raise InstallValidationError(
-            f"runtime file changed while it was inspected: {path.name}"
-        )
-    return hashlib.sha256(contents.replace(b"\r\n", b"\n")).hexdigest()
-
-
 def _normalized_sha256(value: str, label: str) -> str:
     normalized = value.strip()
     if len(normalized) != 64 or any(
@@ -634,7 +437,6 @@ def _load_provenance(
     root: Path,
     *,
     runtime_files: frozenset[Path] = RUNTIME_FILES,
-    accepted_identities: frozenset[tuple[str, str]] | None = None,
 ) -> dict[str, object]:
     marker = root / PROVENANCE_FILE
     before = _lstat(marker)
@@ -692,12 +494,7 @@ def _load_provenance(
         or schema_version != 1
     ):
         raise InstallValidationError("runtime provenance schema is unsupported")
-    identities = (
-        accepted_identities
-        if accepted_identities is not None
-        else frozenset({PROVENANCE_IDENTITY})
-    )
-    if (payload["package_id"], payload["source_repository"]) not in identities:
+    if (payload["package_id"], payload["source_repository"]) != PROVENANCE_IDENTITY:
         raise InstallValidationError("runtime provenance identity is invalid")
 
     files = unique_object(payload["files"], "runtime provenance files")
@@ -802,7 +599,6 @@ def _validate_runtime_tree(
     *,
     allow_ignored: bool,
     runtime_files: frozenset[Path] = RUNTIME_FILES,
-    accepted_identities: frozenset[tuple[str, str]] | None = None,
 ) -> None:
     runtime_directories = _manifest_directories(set(runtime_files))
     found_files, found_directories = _scan_runtime_tree(
@@ -822,7 +618,6 @@ def _validate_runtime_tree(
     _load_provenance(
         root,
         runtime_files=runtime_files,
-        accepted_identities=accepted_identities,
     )
 
 
@@ -835,68 +630,20 @@ def _manifest_directories(files: set[Path]) -> set[Path]:
     }
 
 
-def _validate_legacy_official_runtime(root: Path, *, allow_ignored: bool) -> str:
-    """Recognize only exact official packages released before provenance v1."""
-
-    allowed_files = {
-        relative
-        for manifest in LEGACY_OFFICIAL_MANIFESTS.values()
-        for relative in manifest
-    }
-    allowed_directories = _manifest_directories(allowed_files)
-    found_files, found_directories = _scan_runtime_tree(
-        root,
-        allow_ignored=allow_ignored,
-        allowed_files=allowed_files,
-        allowed_directories=allowed_directories,
-    )
-    if _read_skill_name(root / "SKILL.md") != SKILL_NAME:
-        raise InstallValidationError(f"SKILL.md name must be exactly {SKILL_NAME!r}")
-
-    candidates = [
-        (commit, manifest)
-        for commit, manifest in LEGACY_OFFICIAL_MANIFESTS.items()
-        if set(manifest) == found_files
-        and _manifest_directories(set(manifest)) == found_directories
-    ]
-    if not candidates:
+def _validate_existing_runtime_tree(root: Path, *, allow_ignored: bool) -> None:
+    marker = root / PROVENANCE_FILE
+    if not _exists_without_following(marker):
+        raise InstallValidationError("existing runtime provenance marker is missing")
+    marker_digest = _sha256_regular_file(marker)
+    if marker_digest not in KNOWN_OFFICIAL_PROVENANCE_SHA256:
         raise InstallValidationError(
-            "existing runtime does not match a recognized official legacy release"
+            "existing runtime provenance is not a recognized official release"
         )
-    actual_digests = {
-        relative: _sha256_legacy_file(root / relative, relative)
-        for relative in found_files
-    }
-    for commit, manifest in candidates:
-        if actual_digests == manifest:
-            return commit
-    raise InstallValidationError(
-        "existing runtime does not match a recognized official legacy release"
-    )
-
-
-def _validate_existing_runtime_tree(root: Path, *, allow_ignored: bool) -> str | None:
-    if _exists_without_following(root / PROVENANCE_FILE):
-        marker_digest = _sha256_regular_file(root / PROVENANCE_FILE)
-        if marker_digest not in KNOWN_OFFICIAL_PROVENANCE_SHA256:
-            raise InstallValidationError(
-                "existing runtime provenance is not a recognized official release"
-            )
-        runtime_files = PREVIOUS_PROVENANCE_RUNTIME_FILES.get(
-            marker_digest, RUNTIME_FILES
+    _validate_runtime_tree(root, allow_ignored=allow_ignored)
+    if _sha256_regular_file(marker) != marker_digest:
+        raise InstallValidationError(
+            "existing runtime provenance changed during validation"
         )
-        _validate_runtime_tree(
-            root,
-            allow_ignored=allow_ignored,
-            runtime_files=runtime_files,
-            accepted_identities=KNOWN_PROVENANCE_IDENTITIES,
-        )
-        if _sha256_regular_file(root / PROVENANCE_FILE) != marker_digest:
-            raise InstallValidationError(
-                "existing runtime provenance changed during validation"
-            )
-        return None
-    return _validate_legacy_official_runtime(root, allow_ignored=allow_ignored)
 
 
 def _identity(entry_stat: os.stat_result) -> tuple[int, int]:

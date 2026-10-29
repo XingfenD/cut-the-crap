@@ -1,4 +1,4 @@
-# Install no-negative-echo
+# Install cut-the-crap
 
 Install only the runtime Skill from
 <https://github.com/XingfenD/cut-the-crap>. Do not inspect, modify, or install
@@ -7,7 +7,7 @@ unrelated skills, packages, repositories, or host configuration.
 ## Default installation
 
 If the host provides an official Skill installer, use it to install the
-repository's `no-negative-echo/` subdirectory. On Codex, prefer
+repository's `cut-the-crap/` subdirectory. On Codex, prefer
 `$skill-installer` and verify discovery in a new session.
 
 Otherwise, use the bundled installer:
@@ -29,7 +29,7 @@ Otherwise, use the bundled installer:
 
    ```bash
    python3 -I -B scripts/install_skill.py \
-     --expected-provenance-sha256 2a56d86507d0e0f930a52bb2b2b2bab3cedb5ff809420b2609fdaebc86ea0cba \
+     --expected-provenance-sha256 29ef3fe54631077b038bcd6bae81e2ef0280c247de861f9d3528b6ba5d4f780b \
      --agent HOST_PRESET
    ```
 
@@ -37,7 +37,7 @@ Otherwise, use the bundled installer:
    must already be installed. Do not install dependencies, use elevation, or
    request credentials.
 
-3. Treat exit status 0 plus the printed `Installed no-negative-echo to ...`
+3. Treat exit status 0 plus the printed `Installed cut-the-crap to ...`
    path as successful file installation. If the host cannot reload Skills in
    the current session, report that discovery needs a new session; do not run
    unrelated work merely to prove activation.
@@ -57,7 +57,7 @@ For a custom destination, use only a documented Skill root for that host:
 
 ```bash
 python3 -I -B scripts/install_skill.py \
-  --expected-provenance-sha256 2a56d86507d0e0f930a52bb2b2b2bab3cedb5ff809420b2609fdaebc86ea0cba \
+  --expected-provenance-sha256 29ef3fe54631077b038bcd6bae81e2ef0280c247de861f9d3528b6ba5d4f780b \
   --skills-dir /absolute/path/to/skills \
   --discovery-root /absolute/path/to/skills
 ```

@@ -3,8 +3,8 @@
   "package_id": "io.github.xingfend.cut-the-crap",
   "source_repository": "https://github.com/XingfenD/cut-the-crap",
   "files": {
-    "SKILL.md": "b858e8b5872514573151837bc4c0633dbf43e72f15ce20433aff9154e1266bc2",
-    "agents/openai.yaml": "52252e049b122733259dc17f17d54359b4e6445eed1482c393e7744a6f8e9a4c",
+    "SKILL.md": "308d4a3c4d0db1a1d470bb23df7e1230244e7bfe818fdd8e456ac077b3045f7a",
+    "agents/openai.yaml": "a872e5b98d16848b5666b7146255861442fb492bc526326e21a331d628594abc",
     "assets/decision-boundary.png": "3c80021dc245b4a3fe02a18434fc200fae0db3810c8fd451acc25bfb2e831d7a",
     "assets/icon-400.png": "9ba3b39b106a1f6b6a376a4ccf91373e8f80923d87ca244892c35c7f95a1a121",
     "assets/icon.png": "052b7bf0101ab53cbfe2a909155d36df7554acbfbefeefbe94f00e5cf2e74b74",

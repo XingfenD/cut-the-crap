@@ -283,7 +283,7 @@ def case_sha256(prompt: dict[str, Any], oracle: dict[str, Any]) -> str:
     validate_prompt(prompt)
     validate_oracle(oracle)
     payload = {
-        "schema": "no-negative-echo-case-v2",
+        "schema": "cut-the-crap-case-v2",
         "prompt": prompt,
         "oracle": oracle,
     }
@@ -747,7 +747,7 @@ def main() -> int:
             "condition": a.condition,
             "evidence_bundle_sha256": canonical_sha256(
                 {
-                    "schema": "no-negative-echo-evidence-v1",
+                    "schema": "cut-the-crap-evidence-v1",
                     "reference_host": reference_host,
                     "condition": a.condition,
                     "run_ids": run_ids,
